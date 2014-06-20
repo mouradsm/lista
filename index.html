@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Nossa Lista</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular.min.js"></script>
+    <script src="js/app.js"></script>
+</head>
+<body ng-app="lista">
+<div class="tab" ng-controller="TabController as tab">
+    <div class=container-fuild">
+
+        <!-- Definido no CSS -->
+        <div class="row-fuild">
+            <nav class="col-md-8 col-md-offset-2">
+                <a href="#" ng-class="{active:tab.isSet(1)}" ng-click="tab.setTab(1)"> Home</a>
+                <a href="#" ng-class="{active:tab.isSet(2)}" ng-click="tab.setTab(2)"> Lista </a>
+                <a href="#" ng-class="{active:tab.isSet(3)}" ng-click="tab.setTab(3)"> Dúvidas </a>
+            </nav>
+        </div>
+        <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <div ng-show="tab.isSet(1)">
+                        <h4>Bem vindo!</h4>
+
+                        <p>Agradecemos muito a sua visita!</p>
+
+                        <p>Clique no menu LISTA e siga as instruções</p>
+                    </div>
+
+                    <div ng-show="tab.isSet(2)" class="text-left">
+                        <form action="">
+                            <div class="panel panel-default">
+
+                                <div class="panel-heading">
+                                    <div class="panel-title">
+                                        <h4> Queremos te conhecer!</h4>
+                                    </div>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="nome">Nome completo</label>
+                                            <input id="nome" type="text" class="form-control"
+                                                   placeholder="Nome de quem está nos presenteando"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="email">Email</label>
+
+                                        <div class="input-group">
+                                            <span class="input-group-addon">@</span>
+                                            <input id="email" type="text" class="form-control"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <div class="panel-title">
+                                            <h4> Escolha os presentes </h4>
+                                        </div>
+                                    </div>
+                                <div class="panel-body">
+                                    <div ng-controller="SelectController as select">
+                                        <select id="presentes" name="presentes" ng-model="selectedItem" class="form-control" ng-options="item.id as item.desc for item in Itens">
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+
+
+                    <div ng-show="tab.isSet(3)">
+                        <h4>Página 3</h4>
+                    </div>
+                </div>
+        </div>
+    </div>
+
+</div>
+</div>
+
+</body>
+</html>

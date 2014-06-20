@@ -1,0 +1,13 @@
+[
+    {
+        "id"        : "01",
+        "desc"      : "Cesta para pão + cobre alimentos",
+        "grupo"     : "cozinha",
+        "status"    : 1
+    },
+    {   "id"        : "02",
+        "desc"      : "Escorredor de arroz (inox)",
+        "grupo"     : "cozinha",
+        "status"    : 1
+    }
+]
