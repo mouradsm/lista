@@ -9,5 +9,15 @@
         "desc"      : "Escorredor de arroz (inox)",
         "grupo"     : "cozinha",
         "status"    : 1
+    },
+    {   "id"        : "03",
+        "desc"      : "Escorredor de macarrão (inox)",
+        "grupo"     : "cozinha",
+        "status"    : 1
+    },
+    {   "id"        : "04",
+        "desc"      : "Espremedor de alho + colher e xícaras de medida",
+        "grupo"     : "cozinha",
+        "status"    : 1
     }
 ]

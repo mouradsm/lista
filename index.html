@@ -68,8 +68,18 @@
                                     </div>
                                 <div class="panel-body">
                                     <div ng-controller="SelectController as select">
-                                        <select id="presentes" name="presentes" ng-model="selectedItem" class="form-control" ng-options="item.id as item.desc for item in Itens">
+                                        <select id="presentes" name="presentes" ng-model="selectedItem"
+                                                class="form-control"
+                                                ng-options="item.id as item.desc for item in Itens | filter:item.status = 1">
+                                            <option value="">-- Presentes --</option>
                                         </select>
+                                        {{selectedItem}}
+                                        <button ng-click="addItemLista(selectedItem)"> Add </button>
+                                        <div>
+                                            <ul>
+                                                <li ng-repeat="item in selectedItens "> {{item.desc}} </li>
+                                            </ul>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
