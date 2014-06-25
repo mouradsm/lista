@@ -12,7 +12,7 @@
 </head>
 <body ng-app="lista">
 <div class="tab" ng-controller="TabController as tab">
-    <div class=container-fuild">
+    <div class="container-fuild">
 
         <!-- Definido no CSS -->
         <div class="row-fuild">
@@ -68,16 +68,19 @@
                                     </div>
                                 <div class="panel-body">
                                     <div ng-controller="SelectController as select">
-                                        <select id="presentes" name="presentes" ng-model="selectedItem"
+                                    <div class="col-md-8">
+                                            <select id="presentes" name="presentes" ng-model="selectedItem"
                                                 class="form-control"
-                                                ng-options="item.id as item.desc for item in Itens | filter:item.status = 1">
+                                                ng-options="item.id as item.desc for item in Itens | filter:item.disponivel = true">
                                             <option value="">-- Presentes --</option>
                                         </select>
-                                        {{selectedItem}}
-                                        <button ng-click="addItemLista(selectedItem)"> Add </button>
+                                        </div>
+                                        <button ng-click="addItemLista(selectedItem)" class="btn btn-primary lyphicon glyphicon-plus"> Adicionar </button>
                                         <div>
-                                            <ul>
-                                                <li ng-repeat="item in selectedItens "> {{item.desc}} </li>
+                                            <ul >
+                                                <li class="" ng-repeat="item in selectedItens "> {{item.desc}} 
+                                                    <button ng-click="removeItemLista(item.id)" class="btn btn-primary lyphicon glyphicon-minus"> remove </button>
+                                                 </li>
                                             </ul>
                                         </div>
                                     </div>

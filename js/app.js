@@ -17,12 +17,12 @@
 
         this.setTab = function(setTab){
           this.tab = setTab;
-        };
+      };
 
-        this.isSet = function(checkTab){
-            return this.tab === checkTab;
-        };
-    });
+      this.isSet = function(checkTab){
+        return this.tab === checkTab;
+    };
+});
 
     app.controller('SelectController', function($scope, $http){
 
@@ -32,27 +32,33 @@
 
         $scope.addItemLista = function(id){
             var item = getById($scope.Itens, id);
+            if(item){
                 $scope.selectedItens.push(item);
-                $scope.updateItemStatus(item, 0);
+                $scope.updateItemDisponibilidade(item, false);
+            }
         }
 
-        $scope.updateItemStatus = function(itemToUpdate, newStatus){
+        $scope.removeItemLista = function(id){
+            var item = getById($scope.Itens, id);
+            if(item){
+                $scope.selectedItens.shift(item);
+                $scope.updateItemDisponibilidade(item, true);
+            }
+        }
+
+        $scope.updateItemDisponibilidade = function(itemToUpdate, newDisponibilidade){
             if(itemToUpdate)
-                itemToUpdate.status = newStatus;
+                itemToUpdate.disponivel = newDisponibilidade;
         }
-
-
-
-
 
         //load from JsonFile
         $http({
-           method   : 'GET',
-           url      : JsonFile
-        }).success(function(result){
-           $scope.Itens = result;
-        })
+         method   : 'GET',
+         url      : JsonFile
+     }).success(function(result){
+         $scope.Itens = result;
+     })
 
-    });
+ });
 })();
 
