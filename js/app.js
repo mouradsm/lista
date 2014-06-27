@@ -32,24 +32,26 @@
 
         $scope.addItemLista = function(id){
             var item = getById($scope.Itens, id);
-            if(item){
-                $scope.selectedItens.push(item);
-                $scope.updateItemDisponibilidade(item, false);
+            if(typeof(item) != 'undefined'){
+                if(item.disponivel == true){
+                    $scope.selectedItens.push(item);
+                    $scope.updateItemDisponibilidade(item, false);
+                }
             }
         }
 
         $scope.removeItemLista = function(id){
-            var item = getById($scope.Itens, id);
-            if(item){
-                $scope.selectedItens.shift(item);
-                $scope.updateItemDisponibilidade(item, true);
-            }
+           var item = getById($scope.Itens, id);
+           if(item){
+            $scope.selectedItens.shift(item);
+            $scope.updateItemDisponibilidade(item, true);
         }
+    }
 
-        $scope.updateItemDisponibilidade = function(itemToUpdate, newDisponibilidade){
-            if(itemToUpdate)
-                itemToUpdate.disponivel = newDisponibilidade;
-        }
+    $scope.updateItemDisponibilidade = function(itemToUpdate, newDisponibilidade){
+        if(itemToUpdate)
+            itemToUpdate.disponivel = newDisponibilidade;
+    }
 
         //load from JsonFile
         $http({
@@ -61,4 +63,6 @@
 
  });
 })();
+
+
 
