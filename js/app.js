@@ -46,6 +46,15 @@
             $scope.selectedItens.shift(item);
             $scope.updateItemDisponibilidade(item, true);
         }
+
+
+        $scope.submitForm = function(isValid){
+            if(isValid && ($scope.selectedItens.length == 0))
+                alert('Aqui tá marotão')
+
+
+
+        };
     }
 
     $scope.updateItemDisponibilidade = function(itemToUpdate, newDisponibilidade){
