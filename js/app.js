@@ -1,77 +1,72 @@
-(function(){
-    var app = angular.module('lista',[]);
+(function() {
+    var app = angular.module('lista', []);
     var JsonFile = 'Panela.json' //caminho do arquivo json
 
-    function getById(arr, id){
-        for(var i = 0; i < arr.length; i++){
+    function getById(arr, id) {
+        for (var i = 0; i < arr.length; i++) {
             var result = arr[i];
-            if(result.id === id){
+            if (result.id === id) {
                 return result;
             }
         }
     }
 
-    app.controller('TabController', function(){
+    app.controller('TabController', function() {
 
         this.tab = 1;
 
-        this.setTab = function(setTab){
-          this.tab = setTab;
-      };
+        this.setTab = function(setTab) {
+            this.tab = setTab;
+        };
 
-      this.isSet = function(checkTab){
-        return this.tab === checkTab;
-    };
-});
+        this.isSet = function(checkTab) {
+            return this.tab === checkTab;
+        };
+    });
 
-    app.controller('SelectController', function($scope, $http){
+    app.controller('SelectController', function($scope, $http) {
 
         $scope.Itens = [];
         $scope.selectedItens = [];
         $scope.selectedItem = "";
 
-        $scope.addItemLista = function(id){
+        $scope.addItemLista = function(id) {
             var item = getById($scope.Itens, id);
-            if(typeof(item) != 'undefined'){
-                if(item.disponivel == true){
+            if (typeof(item) != 'undefined') {
+                if (item.disponivel == true) {
                     $scope.selectedItens.push(item);
                     $scope.updateItemDisponibilidade(item, false);
                 }
             }
         }
 
-        $scope.removeItemLista = function(id){
-           var item = getById($scope.Itens, id);
-           if(item){
-            $scope.selectedItens.shift(item);
-            $scope.updateItemDisponibilidade(item, true);
+        $scope.removeItemLista = function(id) {
+            var item = getById($scope.Itens, id);
+            if (item) {
+                $scope.selectedItens.shift(item);
+                $scope.updateItemDisponibilidade(item, true);
+            }
         }
 
+        $scope.updateItemDisponibilidade = function(itemToUpdate, newDisponibilidade) {
+            if (itemToUpdate)
+                itemToUpdate.disponivel = newDisponibilidade;
+        }
 
-        $scope.submitForm = function(isValid){
-            if(isValid && ($scope.selectedItens.length == 0))
-                alert('Aqui tá marotão')
-
-
-
-        };
-    }
-
-    $scope.updateItemDisponibilidade = function(itemToUpdate, newDisponibilidade){
-        if(itemToUpdate)
-            itemToUpdate.disponivel = newDisponibilidade;
-    }
+        $scope.submitForm = function(isValid) {
+            var itens = $scope.selectedItens;
+            if (isValid)
+                alert('apos!');
+        }
 
         //load from JsonFile
         $http({
-         method   : 'GET',
-         url      : JsonFile
-     }).success(function(result){
-         $scope.Itens = result;
-     })
+            method: 'GET',
+            url: JsonFile
+        }).success(function(result) {
+            $scope.Itens = result;
+        })
 
- });
+    });
+
 })();
-
-
-
