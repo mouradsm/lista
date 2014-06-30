@@ -5,7 +5,7 @@
     function getById(arr, id) {
         for (var i = 0; i < arr.length; i++) {
             var result = arr[i];
-            if (result.id === id) {
+            if (result._id === id) {
                 return result;
             }
         }
@@ -30,7 +30,8 @@
         $scope.selectedItens = [];
         $scope.selectedItem = "";
 
-        $scope.addItemLista = function(id) {
+        $scope.addItemLista = function(id, e) {
+            e.preventDefault();
             var item = getById($scope.Itens, id);
             if (typeof(item) != 'undefined') {
                 if (item.disponivel == true) {
@@ -40,7 +41,8 @@
             }
         }
 
-        $scope.removeItemLista = function(id) {
+        $scope.removeItemLista = function(id, e) {
+            e.preventDefault();
             var item = getById($scope.Itens, id);
             if (item) {
                 $scope.selectedItens.shift(item);
@@ -53,19 +55,46 @@
                 itemToUpdate.disponivel = newDisponibilidade;
         }
 
-        $scope.submitForm = function(isValid) {
+        $scope.submitForm = function(isValid) {            
             var itens = $scope.selectedItens;
-            if (isValid)
-                alert('apos!');
+            if (isValid){
+                if(itens.length != []){ 
+                    for(var i=0;i < itens.length; i++){
+                        putIten(itens[i]._id, $scope.email);
+                    }         
+                    limpaTudo();              
+                    alert('Seus presentes foram Salvos com sucesso!, Obrigado!!')     
+                }else{
+                    alert('Selecione ao menos um presente =)')
+                }
+            }
         }
 
         //load from JsonFile
         $http({
             method: 'GET',
-            url: JsonFile
+             url: 'http://hidden-refuge-3353.herokuapp.com/api/lista/'            
+            // url: 'http://localhost:5000/api/lista'            
         }).success(function(result) {
             $scope.Itens = result;
         })
+
+        function putIten(id, email){
+            $http({
+                 method: 'PUT',
+                 url: 'http://hidden-refuge-3353.herokuapp.com/api/lista/'+id+'/'+email
+                // url: 'http://localhost:5000/api/lista/'+id+'/'+email
+             }).success(function(message){
+                message = "Atualizado com sucesso!";
+             });
+            
+        }
+
+        function limpaTudo(){
+            $scope.nome = '';
+            $scope.email = '';
+            $scope.selectedItens = [];
+        }
 
     });
 

@@ -65,12 +65,12 @@
                                     <div class="col-md-4 col-sm-4 col-xs-6">
                                         <select id="presentes" name="presentes" ng-model="selectedItem"
                                         class="form-control"
-                                        ng-options="item.id as item.desc for item in Itens | filter:item.disponivel = true" >
+                                        ng-options="item._id as item.desc for item in Itens | filter:item.disponivel = true" >
                                         <option value=""> -- Presentes -- </option>
                                     </select>
                                 </div>
 
-                                <button ng-click="addItemLista(selectedItem)" class="btn btn-primary lyphicon glyphicon-plus"> Adicionar </button>
+                                <button ng-click="addItemLista(selectedItem, $event)" class="btn btn-primary lyphicon glyphicon-plus"> Adicionar </button>
                             </div>
                             <div class="row clearfix">
                                 <div class="col-md-6">
@@ -79,7 +79,7 @@
                                             <li class="" ng-repeat="item in selectedItens track by $index ">
                                                 <div class="row-fluid">
                                                     <label>{{item.desc}}</label>
-                                                    <span class="destroy glyphicon glyphicon-remove" ng-click="removeItemLista(item.id)" />
+                                                    <span class="destroy glyphicon glyphicon-remove" ng-click="removeItemLista(item._id, $event)" />
                                                 </div>
                                             </li>
                                         </ul>
