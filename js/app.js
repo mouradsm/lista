@@ -55,15 +55,15 @@
                 itemToUpdate.disponivel = newDisponibilidade;
         }
 
-        $scope.submitForm = function(isValid) {            
+        $scope.submitForm = function(isValid) {
             var itens = $scope.selectedItens;
             if (isValid){
-                if(itens.length != []){ 
+                if(itens.length != []){
                     for(var i=0;i < itens.length; i++){
                         putIten(itens[i]._id, $scope.email);
-                    }         
-                    limpaTudo();              
-                    alert('Seus presentes foram Salvos com sucesso!, Obrigado!!')     
+                    }
+                    limpaTudo();
+                    alert('Seus presentes foram Salvos com sucesso!, Obrigado!!')
                 }else{
                     alert('Selecione ao menos um presente =)')
                 }
@@ -73,7 +73,7 @@
         //load from JsonFile
         $http({
             method: 'GET',
-             url: 'http://hidden-refuge-3353.herokuapp.com/api/lista/'            
+             url: 'http://hidden-refuge-3353.herokuapp.com/api/lista/'
             // url: 'http://localhost:5000/api/lista'            
         }).success(function(result) {
             $scope.Itens = result;
@@ -87,7 +87,7 @@
              }).success(function(message){
                 message = "Atualizado com sucesso!";
              });
-            
+
         }
 
         function limpaTudo(){

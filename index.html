@@ -7,6 +7,8 @@
     <link rel="stylesheet" type="text/css" href="style.css">
 
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular.min.js"></script>
     <script src="js/app.js"></script>
 </head>
@@ -17,9 +19,9 @@
             <!-- Definido no CSS -->
             <div class="row-fuild">
                 <nav class="col-md-8 col-md-offset-2">
-                    <a href="#" ng-class="{active:tab.isSet(1)}" ng-click="tab.setTab(1)"> Home</a>
-                    <a href="#" ng-class="{active:tab.isSet(2)}" ng-click="tab.setTab(2)"> Lista </a>
-                    <a href="#" ng-class="{active:tab.isSet(3)}" ng-click="tab.setTab(3)"> Dúvidas </a>
+                    <a href="" ng-class="{active:tab.isSet(1)}" ng-click="tab.setTab(1)"> Home</a>
+                    <a href="" ng-class="{active:tab.isSet(2)}" ng-click="tab.setTab(2)"> Lista </a>
+                    <a href="" ng-class="{active:tab.isSet(3)}" ng-click="tab.setTab(3)"> Dúvidas </a>
                 </nav>
             </div>
             <div class="row" ng-controller="SelectController as select">
@@ -47,7 +49,7 @@
                                     <input ng-model="nome" type="text" class="form-control" id="inputNome" placeholder="Nome Completo" required>
                                 </div>
                                 <div class="form-group col-md-4">
-                                  <label for="inputEmail1">Email</label>
+                                  <label for="inputEmail">Email</label>
                                   <input ng-model="email" type="email" class="form-control" id="inputEmail" placeholder="Digite seu Email" required>
                               </div>                         
                           </div>                                
@@ -92,17 +94,19 @@
 
                 <div id="save"class="row">
                     <div class="col-md-6 col-md-offset-5 col-xs-4 col-xs-offset-4">
-
                         <button type="submit"  ng-disabled="presentesForm.$invalid" class="btn btn-success"> Salvar Escolhas </button>
-
-                    </div></div>
-
+                    </div>
+                </div>
                 </form>
             </div>
 
-
             <div ng-show="tab.isSet(3)">
-                <h4>Página 3</h4>
+                <h4>Dúvidas Frequentes</h4>
+                    <div class="row">
+                        <div col-md-6>
+                            //@TODO: Colocar a partial da FAQ
+                        </div>
+                    </div>
             </div>
         </div>
     </div>
