@@ -13,104 +13,136 @@
     <script src="js/app.js"></script>
 </head>
 <body ng-app="lista">
-    <div class="tab" ng-controller="TabController as tab">
-        <div class="container-fuild">
+<div class="tab" ng-controller="TabController as tab">
+    <div class="container-fuild">
 
-            <!-- Definido no CSS -->
-            <div class="row-fuild">
-                <nav class="col-md-8 col-md-offset-2">
-                    <a href="" ng-class="{active:tab.isSet(1)}" ng-click="tab.setTab(1)"> Home</a>
-                    <a href="" ng-class="{active:tab.isSet(2)}" ng-click="tab.setTab(2)"> Lista </a>
-                    <a href="" ng-class="{active:tab.isSet(3)}" ng-click="tab.setTab(3)"> Dúvidas </a>
-                </nav>
-            </div>
-            <div class="row" ng-controller="SelectController as select">
-                <div class="col-md-8 col-md-offset-2">
-                    <div ng-show="tab.isSet(1)">
-                        <h4>Bem vindo!</h4>
+        <!-- Definido no CSS -->
+        <div class="row-fuild">
+            <nav class="col-md-8 col-md-offset-2">
+                <a href="" ng-class="{active:tab.isSet(1)}" ng-click="tab.setTab(1)"> Home</a>
+                <a href="" ng-class="{active:tab.isSet(2)}" ng-click="tab.setTab(2)"> Lista </a>
+                <a href="" ng-class="{active:tab.isSet(3)}" ng-click="tab.setTab(3)"> Dúvidas </a>
+            </nav>
+        </div>
+        <div class="row" ng-controller="SelectController as select">
+            <div class="col-md-8 col-md-offset-2">
+                <div ng-show="tab.isSet(1)">
+                    <h4>Bem vindo!</h4>
 
-                        <p>Agradecemos muito a sua visita!</p>
+                    <p>Agradecemos muito a sua visita!</p>
 
-                        <p>Clique no menu LISTA e siga as instruções</p>
-                    </div>
+                    <p>Clique no menu LISTA e siga as instruções</p>
+                </div>
 
-                    <div ng-show="tab.isSet(2)" class="text-left">
-                        <form id="presentesForm" name ="presentesForm" ng-submit="submitForm(presentesForm.$valid)" novalidate>
-                            <div class="panel panel-default">
+                <div ng-show="tab.isSet(2)" class="text-left">
+                    <form id="presentesForm" name="presentesForm" ng-submit="submitForm(presentesForm.$valid)"
+                          novalidate>
+                        <div class="panel panel-default">
 
-                                <div class="panel-heading">
-                                    <div class="panel-title">
-                                        <h4> Queremos te conhecer!</h4>
-                                    </div>
+                            <div class="panel-heading">
+                                <div class="panel-title">
+                                    <h4> Queremos te conhecer!</h4>
                                 </div>
-                                <div class="panel-body">
-                                 <div class="form-group col-md-4">
+                            </div>
+                            <div class="panel-body">
+                                <div class="form-group col-md-4">
                                     <label for="inputNome">Nome</label>
-                                    <input ng-model="nome" type="text" class="form-control" id="inputNome" placeholder="Nome Completo" required>
+                                    <input ng-model="nome" type="text" class="form-control" id="inputNome"
+                                           placeholder="Nome Completo" required>
                                 </div>
                                 <div class="form-group col-md-4">
-                                  <label for="inputEmail">Email</label>
-                                  <input ng-model="email" type="email" class="form-control" id="inputEmail" placeholder="Digite seu Email" required>
-                              </div>                         
-                          </div>                                
-                      </div>
-
-                      <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <div class="panel-title">
-                                <h4> Escolha os presentes </h4>
+                                    <label for="inputEmail">Email</label>
+                                    <input ng-model="email" type="email" class="form-control" id="inputEmail"
+                                           placeholder="Digite seu Email" required>
+                                </div>
                             </div>
                         </div>
-                        <div class="panel-body">
-                            <div>
-                                <div class="row">
-                                    <div class="col-md-4 col-sm-4 col-xs-6">
-                                        <select id="presentes" name="presentes" ng-model="selectedItem"
-                                        class="form-control"
-                                        ng-options="item._id as item.desc for item in Itens | filter:item.disponivel = true" >
-                                        <option value=""> -- Presentes -- </option>
-                                    </select>
-                                </div>
 
-                                <button ng-click="addItemLista(selectedItem, $event)" class="btn btn-primary lyphicon glyphicon-plus"> Adicionar </button>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <div class="panel-title">
+                                    <h4> Escolha os presentes </h4>
+                                </div>
                             </div>
-                            <div class="row clearfix">
-                                <div class="col-md-6">
-                                    <div id="item-list">
-                                        <ul class="list-unstyled">
-                                            <li class="" ng-repeat="item in selectedItens track by $index ">
-                                                <div class="row-fluid">
-                                                    <label>{{item.desc}}</label>
-                                                    <span class="destroy glyphicon glyphicon-remove" ng-click="removeItemLista(item._id, $event)" />
-                                                </div>
-                                            </li>
-                                        </ul>
+                            <div class="panel-body">
+                                <div>
+                                    <div class="row">
+                                        <div class="col-md-4 col-sm-4 col-xs-6">
+                                            <select id="presentes" name="presentes" ng-model="selectedItem"
+                                                    class="form-control"
+                                                    ng-options="item._id as item.desc for item in Itens | filter:item.disponivel = true">
+                                                <option value=""> -- Presentes --</option>
+                                            </select>
+                                        </div>
+
+                                        <button ng-click="addItemLista(selectedItem, $event)"
+                                                class="btn btn-primary lyphicon glyphicon-plus"> Adicionar
+                                        </button>
+                                    </div>
+                                    <div class="row clearfix">
+                                        <div class="col-md-6">
+                                            <div id="item-list">
+                                                <ul class="list-unstyled">
+                                                    <li class="" ng-repeat="item in selectedItens track by $index ">
+                                                        <div class="row-fluid">
+                                                            <label>{{item.desc}}</label>
+                                                            <span class="destroy glyphicon glyphicon-remove"
+                                                                  ng-click="removeItemLista(item._id, $event)"/>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+
+                        <div id="save" class="row">
+                            <div class="col-md-6 col-md-offset-5 col-xs-4 col-xs-offset-4">
+                                <button type="submit" ng-disabled="presentesForm.$invalid" class="btn btn-success">
+                                    Salvar Escolhas
+                                </button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
 
-                <div id="save"class="row">
-                    <div class="col-md-6 col-md-offset-5 col-xs-4 col-xs-offset-4">
-                        <button type="submit"  ng-disabled="presentesForm.$invalid" class="btn btn-success"> Salvar Escolhas </button>
-                    </div>
-                </div>
-                </form>
-            </div>
+                <div ng-show="tab.isSet(3)">
 
-            <div ng-show="tab.isSet(3)">
-                <h4>Dúvidas Frequentes</h4>
                     <div class="row">
-                        <div col-md-6>
-                            //@TODO: Colocar a partial da FAQ
+                        <div class="col-md-offset-3 col-md-6 well">
+                            <h4>Dúvidas? Mande uma mensagem!</h4>
+                            <hr/>
+                            <div class="col-md-6 col-md-offset-3 text-left">
+                                <form id="mensagemForm" name="mensagemForm" role="form" novalidate>
+                                    <div class="form-group">
+                                        <label for="inputNomeDuvida">Nome</label>
+                                        <input ng-model="nomeDuvida" type="text" class="form-control"
+                                               id="inputNomeDuvida" placeholder="Digite o Nome" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputEmailDuvida">Email address</label>
+                                        <input ng-model="emailDuvida" type="email" class="form-control"
+                                               id="inputEmailDuvida" placeholder="Digite o email" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="textMensagemDuvida">Mensagem</label>
+                                        <textarea ng-model="mensagemDuvida" class="form-control" id="textMensagemDuvida"
+                                                  cols="30" rows="10">
+                                        </textarea>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary pull-right"
+                                            ng-disabled="mensagemForm.$invalid">Enviar
+                                    </button>
+                                </form>
+                            </div>
                         </div>
                     </div>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
 </div>
 </div>
