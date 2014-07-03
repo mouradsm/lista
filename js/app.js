@@ -55,7 +55,7 @@
                 itemToUpdate.disponivel = newDisponibilidade;
         }
 
-        $scope.submitForm = function(isValid) {
+        $scope.submitFormPresentes = function(isValid) {
             var itens = $scope.selectedItens;
             if (isValid){
                 if(itens.length != []){
@@ -67,6 +67,19 @@
                 }else{
                     alert('Selecione ao menos um presente =)')
                 }
+            }
+        }
+
+        $scope.submitFormDuvidas = function(isValid){
+            if(isValid){
+                var origem      = $scope.emailDuvida;
+                var destino     = 'ericaediego@ericaediego.com.br, diegosouza20049@hotmail.com';
+                var assunto     = 'Duvidas ' + $scope.nomeDuvida;
+                var mensagem    = $scope.mensagemDuvida;
+                
+                enviarMensagem(origem, destino, assunto, mensagem)
+
+
             }
         }
 
@@ -83,17 +96,31 @@
             $http({
                  method: 'PUT',
                  url: 'http://hidden-refuge-3353.herokuapp.com/api/lista/'+id+'/'+email
-                // url: 'http://localhost:5000/api/lista/'+id+'/'+email
+               //url: 'http://localhost:5000/api/lista/'+id+'/'+email
              }).success(function(message){
                 message = "Atualizado com sucesso!";
              });
 
         }
 
+        function enviarMensagem(origem, destino, assunto, mensagem){
+
+            $http({
+                method: 'POST',
+                url: 'http://hidden-refuge-3353.herokuapp.com/api/email/'+origem+'/'
+                + destino +'/'+ assunto +'/'+ mensagem
+            }).success(function(){
+                alert('Mensagem Enviada!');                
+            });
+        }
+
         function limpaTudo(){
-            $scope.nome = '';
-            $scope.email = '';
-            $scope.selectedItens = [];
+            $scope.nome             = '';
+            $scope.email            = '';
+            $scope.selectedItens    = [];
+            $scope.emailDuvida      = '';
+            $scope.mensagemDuvida   = '';
+            $scope.nomeDuvida       = '';
         }
 
     });

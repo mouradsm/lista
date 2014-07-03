@@ -35,7 +35,7 @@
                 </div>
 
                 <div ng-show="tab.isSet(2)" class="text-left">
-                    <form id="presentesForm" name="presentesForm" ng-submit="submitForm(presentesForm.$valid)"
+                    <form id="presentesForm" name="presentesForm" ng-submit="submitFormPresentes(presentesForm.$valid)"
                           novalidate>
                         <div class="panel panel-default">
 
@@ -115,7 +115,7 @@
                             <h4>Dúvidas? Mande uma mensagem!</h4>
                             <hr/>
                             <div class="col-md-6 col-md-offset-3 text-left">
-                                <form id="mensagemForm" name="mensagemForm" role="form" novalidate>
+                                <form id="mensagemForm" name="mensagemForm" ng-submit="submitFormDuvidas(duvidasForm.$valid)" role="form" novalidate>
                                     <div class="form-group">
                                         <label for="inputNomeDuvida">Nome</label>
                                         <input ng-model="nomeDuvida" type="text" class="form-control"
