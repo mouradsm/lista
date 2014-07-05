@@ -57,29 +57,37 @@
 
         $scope.submitFormPresentes = function(isValid) {
             var itens = $scope.selectedItens;
+            var itensMensagem = '';
             if (isValid){
                 if(itens.length != []){
                     for(var i=0;i < itens.length; i++){
+                        itensMensagem += ', ' +itens[i].desc;
                         putIten(itens[i]._id, $scope.email);
                     }
+                    
+
+                var mensagem = "Obrigado, você escolheu: " + itensMensagem;
+                    enviarMensagem('ericaediego@ericaediego.com.br', $scope.email, 'Obrigado!', mensagem);
+
                     limpaTudo();
-                    alert('Seus presentes foram Salvos com sucesso!, Obrigado!!')
+                    alert('Seus presentes foram Escolhidos com sucesso!, Obrigado!!');
                 }else{
-                    alert('Selecione ao menos um presente =)')
+                    alert('Selecione ao menos um presente para continuar =)')
                 }
             }
         }
 
         $scope.submitFormDuvidas = function(isValid){
             if(isValid){
-                var origem      = $scope.emailDuvida;
-                var destino     = 'ericaediego@ericaediego.com.br, diegosouza20049@hotmail.com';
+                var origem      = 'ericaediego@ericaediego.com.br';
+                var destino     = 'diegosouza20049@hotmail.com';
                 var assunto     = 'Duvidas ' + $scope.nomeDuvida;
-                var mensagem    = $scope.mensagemDuvida;
+                var mensagem    = $scope.mensagemDuvida + ' ' + $scope.emailDuvida;
                 
-                enviarMensagem(origem, destino, assunto, mensagem)
+                enviarMensagem(origem, destino, assunto, mensagem); 
 
-
+                limpaTudo();
+                alert('Mensagem Enviada com Sucesso!')
             }
         }
 
@@ -87,7 +95,7 @@
         $http({
             method: 'GET',
              url: 'http://hidden-refuge-3353.herokuapp.com/api/lista/'
-            // url: 'http://localhost:5000/api/lista'            
+             //url: 'http://localhost:5000/api/lista'            
         }).success(function(result) {
             $scope.Itens = result;
         })
@@ -95,22 +103,25 @@
         function putIten(id, email){
             $http({
                  method: 'PUT',
-                 url: 'http://hidden-refuge-3353.herokuapp.com/api/lista/'+id+'/'+email
+                url: 'http://hidden-refuge-3353.herokuapp.com/api/lista/'+id+'/'+email
                //url: 'http://localhost:5000/api/lista/'+id+'/'+email
              }).success(function(message){
                 message = "Atualizado com sucesso!";
              });
-
         }
 
         function enviarMensagem(origem, destino, assunto, mensagem){
-
             $http({
                 method: 'POST',
                 url: 'http://hidden-refuge-3353.herokuapp.com/api/email/'+origem+'/'
                 + destino +'/'+ assunto +'/'+ mensagem
+
+                //url: 'http://localhost:5000/api/email/'+origem+'/'
+                //+ destino +'/'+ assunto +'/'+ mensagem
+
+
             }).success(function(){
-                alert('Mensagem Enviada!');                
+                              
             });
         }
 

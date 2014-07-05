@@ -61,7 +61,8 @@
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 <div class="panel-title">
-                                    <h4> Escolha os presentes </h4>
+                                    <h4> Escolha os presentes  <spam class="small"> (Selecione o presente na lista e clique em "Adicionar" e depois "Salvar Escolha" para salvar e retira-lo da lista)</spam></h4>
+
                                 </div>
                             </div>
                             <div class="panel-body">
@@ -115,14 +116,14 @@
                             <h4>Dúvidas? Mande uma mensagem!</h4>
                             <hr/>
                             <div class="col-md-6 col-md-offset-3 text-left">
-                                <form id="mensagemForm" name="mensagemForm" ng-submit="submitFormDuvidas(duvidasForm.$valid)" role="form" novalidate>
+                                <form id="mensagemForm" name="mensagemForm" ng-submit="submitFormDuvidas(mensagemForm.$valid)" role="form" novalidate>
                                     <div class="form-group">
                                         <label for="inputNomeDuvida">Nome</label>
                                         <input ng-model="nomeDuvida" type="text" class="form-control"
                                                id="inputNomeDuvida" placeholder="Digite o Nome" required>
                                     </div>
                                     <div class="form-group">
-                                        <label for="inputEmailDuvida">Email address</label>
+                                        <label for="inputEmailDuvida">Email</label>
                                         <input ng-model="emailDuvida" type="email" class="form-control"
                                                id="inputEmailDuvida" placeholder="Digite o email" required>
                                     </div>
